@@ -8,7 +8,7 @@
 
 <h2>Sửa Thông Tin Khách Hàng</h2>
 
-<form th:action="@{/customers/update}" th:object="${customer}" method="post" enctype="multipart/form-data">
+<form th:action="@{/update}" th:object="${customer}" method="post">
   <input type="hidden" th:field="*{id}"/>
 
   <div>
@@ -43,14 +43,9 @@
     <input type="file" name="imageFile">
   </div>
 
-  <div th:if="${customer.fileImage}">
-    <label>Ảnh hiện tại:</label><br>
-    <img th:src="@{'/uploads/' + ${customer.fileImage}}" width="120">
-  </div>
-
   <div>
     <button type="submit">Cập nhật</button>
-    <a th:href="@{/customers}">Hủy</a>
+    <a th:href="@{/customer}">Hủy</a>
   </div>
 </form>
 

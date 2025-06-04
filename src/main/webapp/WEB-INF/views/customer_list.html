@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Danh sách</title>
@@ -8,36 +8,38 @@
 
 <h2>Danh sách khách hàng</h2>
 
-<a href="create">Thêm mới khách hàng</a>
-<table>
+<a th:href="@{/create}">Thêm mới khách hàng</a>
+<table border="1" cellpadding="5" cellspacing="0">
     <thead>
     <tr>
         <th>ID</th>
-        <th>First Name</th>
-        <th>Last Name</th>
+        <th>Họ</th>
+        <th>Tên</th>
         <th>Email</th>
-        <th>Phone</th>
-        <th>Address</th>
-        <th>Image</th>
+        <th>Số điện thoại</th>
+        <th>Địa chỉ</th>
+        <th>Ảnh</th>
         <th>Thao tác</th>
     </tr>
     </thead>
     <tbody>
     <tr th:each="customer : ${customers}">
-        <td>${customer.id}</td>
-        <td>${customer.firstName}</td>
-        <td>${customer.lastName}</td>
-        <td>${customer.email}</td>
-        <td>${customer.phone}</td>
-        <td>${customer.address}</td>
+        <td th:text="${customer.id}"></td>
+        <td th:text="${customer.firstName}"></td>
+        <td th:text="${customer.lastName}"></td>
+        <td th:text="${customer.email}"></td>
+        <td th:text="${customer.phone}"></td>
+        <td th:text="${customer.address}"></td>
         <td>
-            <img th:src="@{${customer.fileImage}}" alt="Customer Image" style="width: 100px; height: 100px;"/>
+            <img th:src="@{${customer.fileImage}}" alt="Ảnh" style="width:100px; height:100px;">
+        </td>
         <td>
-            <a th:href="@{edit(id=${customer.id})}">Sửa</a>
-            <a th:href="@{delete(id=${customer.id})}">Xóa</a>
+            <a th:href="@{'/edit/' + ${customer.id}}">Sửa</a>
+            <a th:href="@{'/delete/' + ${customer.id}}">Xóa</a>
         </td>
     </tr>
     </tbody>
 </table>
+
 </body>
 </html>

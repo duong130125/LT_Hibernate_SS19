@@ -5,10 +5,9 @@
     <meta charset="UTF-8">
 </head>
 <body>
-
 <h2>Thêm Khách Hàng</h2>
 
-<form th:action="@{save}" th:object="${customer}" method="post" enctype="multipart/form-data">
+<form th:action="@{/save}" th:object="${customer}" method="post">
     <div>
         <label>Họ:</label>
         <input type="text" th:field="*{firstName}" placeholder="Họ">
@@ -43,9 +42,8 @@
 
     <div>
         <button type="submit">Thêm</button>
-        <a th:href="@{/customers}">Hủy</a>
+        <a th:href="@{/customer}">Hủy</a>
     </div>
 </form>
-
 </body>
 </html>
