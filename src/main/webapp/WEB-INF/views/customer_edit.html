@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Sửa khách hàng</title>
+  <meta charset="UTF-8">
+</head>
+<body>
+
+<h2>Sửa Thông Tin Khách Hàng</h2>
+
+<form th:action="@{/customers/update}" th:object="${customer}" method="post" enctype="multipart/form-data">
+  <input type="hidden" th:field="*{id}"/>
+
+  <div>
+    <label>Họ:</label>
+    <input type="text" th:field="*{firstName}">
+    <div th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></div>
+  </div>
+
+  <div>
+    <label>Tên:</label>
+    <input type="text" th:field="*{lastName}">
+    <div th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></div>
+  </div>
+
+  <div>
+    <label>Số điện thoại:</label>
+    <input type="text" th:field="*{phone}">
+  </div>
+
+  <div>
+    <label>Địa chỉ:</label>
+    <input type="text" th:field="*{address}">
+  </div>
+
+  <div>
+    <label>Email:</label>
+    <input type="email" th:field="*{email}">
+  </div>
+
+  <div>
+    <label>Ảnh đại diện mới (nếu muốn thay):</label>
+    <input type="file" name="imageFile">
+  </div>
+
+  <div th:if="${customer.fileImage}">
+    <label>Ảnh hiện tại:</label><br>
+    <img th:src="@{'/uploads/' + ${customer.fileImage}}" width="120">
+  </div>
+
+  <div>
+    <button type="submit">Cập nhật</button>
+    <a th:href="@{/customers}">Hủy</a>
+  </div>
+</form>
+
+</body>
+</html>

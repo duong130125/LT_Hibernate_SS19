@@ -1,10 +1,51 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
+    <title>Thêm khách hàng</title>
     <meta charset="UTF-8">
-    <title>Title</title>
 </head>
 <body>
+
+<h2>Thêm Khách Hàng</h2>
+
+<form th:action="@{save}" th:object="${customer}" method="post" enctype="multipart/form-data">
+    <div>
+        <label>Họ:</label>
+        <input type="text" th:field="*{firstName}" placeholder="Họ">
+        <div th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></div>
+    </div>
+
+    <div>
+        <label>Tên:</label>
+        <input type="text" th:field="*{lastName}" placeholder="Tên">
+        <div th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></div>
+    </div>
+
+    <div>
+        <label>Số điện thoại:</label>
+        <input type="text" th:field="*{phone}">
+    </div>
+
+    <div>
+        <label>Địa chỉ:</label>
+        <input type="text" th:field="*{address}">
+    </div>
+
+    <div>
+        <label>Email:</label>
+        <input type="email" th:field="*{email}">
+    </div>
+
+    <div>
+        <label>Ảnh đại diện:</label>
+        <input type="file" name="imageFile">
+    </div>
+
+    <div>
+        <button type="submit">Thêm</button>
+        <a th:href="@{/customers}">Hủy</a>
+    </div>
+</form>
 
 </body>
 </html>
